@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Preloader : MonoBehaviour
+namespace PortalPortal
 {
-    void Start()
+    public class Preloader : MonoBehaviour
     {
-        SceneManager.LoadScene(1);
+        void Start()
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
