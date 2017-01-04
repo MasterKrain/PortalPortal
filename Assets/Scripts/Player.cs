@@ -33,8 +33,22 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 10f, m_PortalMask))
         {
-            Portal portal = Instantiate(m_PortalPrefab.gameObject, hit.point + (hit.normal * .01f), Quaternion.Euler(Quaternion.LookRotation(-hit.normal).eulerAngles)).GetComponent<Portal>();
+            GameObject toInstantiate = m_PortalPrefab.gameObject;
+            Vector3 position = hit.point + (hit.normal * .01f);
+
+            Vector3 dir = hit.point - this.transform.position;
+            Vector3 angles = Quaternion.LookRotation(-hit.normal).eulerAngles;
+
+            if (Mathf.Abs(hit.normal.y) == 1f)
+            {
+                angles.y = Quaternion.LookRotation(dir).eulerAngles.y;
+            }
+
+            Quaternion eulerRot = Quaternion.Euler(angles);
+
+            Portal portal = Instantiate(toInstantiate, position, eulerRot).GetComponent<Portal>();
             portal.SetOwner(this);
+
             m_OwnedPortals++;
         }
     }
