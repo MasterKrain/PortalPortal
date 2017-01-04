@@ -29,28 +29,34 @@ public class PortalGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Portal portal = SpawnPortal();
-            if (portal != null)
-            {
-                if (m_PortalA != null) Destroy(m_PortalA.gameObject);
-                m_PortalA = portal;
-            }
-        }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            Portal portal = SpawnPortal();
-            if (portal != null)
-            {
-                if (m_PortalB != null) Destroy(m_PortalB.gameObject);
-                m_PortalB = portal;
-            }
-        }
     }
 
-    private Portal SpawnPortal()
+    public Portal ShootPortalA()
+    {
+        Portal portal = ShootPortal();
+        if (portal != null)
+        {
+            if (m_PortalA != null) Destroy(m_PortalA.gameObject);
+            m_PortalA = portal;
+        }
+
+        return portal;
+    }
+
+    public Portal ShootPortalB()
+    {
+        Portal portal = ShootPortal();
+        if (portal != null)
+        {
+            if (m_PortalB != null) Destroy(m_PortalB.gameObject);
+            m_PortalB = portal;
+        }
+
+        return portal;
+    }
+
+    private Portal ShootPortal()
     {
         RaycastHit hit;
 
