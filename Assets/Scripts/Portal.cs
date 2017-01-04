@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    private Player m_Owner;
+    private PortalGun m_Owner;
 
     // Use this for initialization
     void Start()
@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
 
     }
 
-    public void SetOwner( Player player )
+    public void SetOwner( PortalGun player )
     {
         m_Owner = player;
     }
