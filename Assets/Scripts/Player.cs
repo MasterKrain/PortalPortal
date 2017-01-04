@@ -10,13 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask m_PortalMask = 8;
 
-    private int m_OwnedPortals;
-    public int OwnedPortals { get { return m_OwnedPortals; } }
+    private Portal m_PortalA, m_PortalB;
+    public Portal PortalA { get { return m_PortalA; } }
+    public Portal PortalB { get { return m_PortalB; } }
 
     // Use this for initialization
     void Start()
     {
-        m_OwnedPortals = 0;
+
     }
 
     // Update is called once per frame
@@ -24,11 +25,18 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            SpawnPortal();
+            if (m_PortalA != null) Destroy(m_PortalA.gameObject);
+            m_PortalA = SpawnPortal();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (m_PortalB != null) Destroy(m_PortalB.gameObject);
+            m_PortalB = SpawnPortal();
         }
     }
 
-    private void SpawnPortal()
+    private Portal SpawnPortal()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 10f, m_PortalMask))
@@ -49,7 +57,9 @@ public class Player : MonoBehaviour
             Portal portal = Instantiate(toInstantiate, position, eulerRot).GetComponent<Portal>();
             portal.SetOwner(this);
 
-            m_OwnedPortals++;
+            return portal;
         }
+
+        return null;
     }
 }
