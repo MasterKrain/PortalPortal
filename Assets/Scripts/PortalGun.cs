@@ -38,6 +38,7 @@ public class PortalGun : MonoBehaviour
         if (portal != null)
         {
             if (m_PortalA != null) Destroy(m_PortalA.gameObject);
+            portal.SetColor(Color.blue);
             m_PortalA = portal;
         }
 
@@ -50,6 +51,7 @@ public class PortalGun : MonoBehaviour
         if (portal != null)
         {
             if (m_PortalB != null) Destroy(m_PortalB.gameObject);
+            portal.SetColor(new Color(1f, .4f, .0f));
             m_PortalB = portal;
         }
 
