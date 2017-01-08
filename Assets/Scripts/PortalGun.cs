@@ -62,7 +62,10 @@ public class PortalGun : MonoBehaviour
     {
         RaycastHit hit;
 
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Vector3 origin = Camera.main.transform.position;
+        Vector3 direction = Camera.main.transform.forward;
+
+        Ray ray = new Ray(origin + (direction * .51f), direction);
 
         if (Physics.Raycast(ray, out hit, m_MaxGunRange))
         {
