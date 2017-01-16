@@ -2,51 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+namespace PortalPortal
 {
-    private PortalGun m_Owner;
-
-    private Material m_Material;
-
-    void Awake()
+    public class Portal : MonoBehaviour
     {
-        LoadChildren();
-    }
+        private PortalGun m_Owner;
 
-    // Use this for initialization
-    void Start()
-    {
+        private Material m_Material;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void LoadChildren()
-    {
-        for (int i = 0; i < transform.childCount; i++)
+        void Awake()
         {
-            GameObject child = transform.GetChild(i).gameObject;
-
-            if (child.name == "PortalMesh") m_Material = child.GetComponent<MeshRenderer>().material;
+            LoadChildren();
         }
-    }
 
-    public void SetColor( Color color )
-    {
-        m_Material.color = color;
-    }
+        // Use this for initialization
+        void Start()
+        {
 
-    public Color GetColor()
-    {
-        return m_Material.color;
-    }
+        }
 
-    public void SetOwner( PortalGun player )
-    {
-        m_Owner = player;
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        private void LoadChildren()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+
+                if (child.name == "PortalMesh") m_Material = child.GetComponent<MeshRenderer>().material;
+            }
+        }
+
+        public void SetColor( Color color )
+        {
+            m_Material.color = color;
+        }
+
+        public Color GetColor()
+        {
+            return m_Material.color;
+        }
+
+        public void SetOwner( PortalGun player )
+        {
+            m_Owner = player;
+        }
     }
 }
