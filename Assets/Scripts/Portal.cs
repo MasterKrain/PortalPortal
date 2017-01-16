@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour
 
     void Awake()
     {
-        m_Material = GetComponent<MeshRenderer>().material;
+        LoadChildren();
     }
 
     // Use this for initialization
@@ -23,6 +23,16 @@ public class Portal : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void LoadChildren()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject child = transform.GetChild(i).gameObject;
+
+            if (child.name == "PortalMesh") m_Material = child.GetComponent<MeshRenderer>().material;
+        }
     }
 
     public void SetColor( Color color )
