@@ -5,12 +5,22 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     private PortalGun m_Owner;
+    public PortalGun Owner { get { return m_Owner; } }
 
     private Material m_Material;
+
+    private Vector3 m_Angle;
+    public Vector3 Angle { get { return m_Angle; } }
 
     void Awake()
     {
         LoadChildren();
+    }
+
+    public void Init( PortalGun player, Vector3 angle )
+    {
+        m_Owner = player;
+        m_Angle = angle;
     }
 
     // Use this for initialization
@@ -43,10 +53,5 @@ public class Portal : MonoBehaviour
     public Color GetColor()
     {
         return m_Material.color;
-    }
-
-    public void SetOwner( PortalGun player )
-    {
-        m_Owner = player;
     }
 }

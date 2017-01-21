@@ -89,12 +89,14 @@ public class PortalGun : MonoBehaviour
                 // If there's any existing portal in the way, destroy it and raycast again to get the right position for the new portal
                 if (hitTag == m_PortalTag)
                 {
+                    if (hit.transform.parent.GetComponent<Portal>() == m_PortalA) m_PortalA = null;
+                    else m_PortalB = null;
                     Destroy(hit.transform.gameObject);
                     if (Physics.Raycast(ray, out hit, m_MaxGunRange, m_LegalSurfaceLayers)) position = hit.point + (hit.normal * .01f);
                 }
 
                 Portal portal = Instantiate(toInstantiate, position, eulerRot).GetComponent<Portal>();
-                portal.SetOwner(this);
+                portal.Init(this, angles);
 
                 return portal;
             }
